@@ -1,0 +1,40 @@
+﻿@model Order
+<div class="container">
+	<div class="row m-5 p-5" style="border:1px dashed grey;">
+		<div class="col-7 m-auto">
+			<img src="~/image/kapidaodeme.jpeg"width="100%" />
+		</div>
+		<div class="col-5 m-auto">
+
+			<div asp-validation-summary="All" class="text-danger"></div>
+
+			<form asp-action="Checkout" method="post">
+				<div class="form-group">
+					<label><b>Name:</b></label><input asp-for="Name" class="form-control" />
+				</div>
+				<div class="form-group">
+					<label><b>Email:</b></label><input type="email" asp-for="Email" class="form-control" />
+				</div>
+				<div class="form-group">
+					<label><b>Adres:</b></label><input asp-for="Adress" class="form-control" />
+				</div>
+				<div class="form-group">
+					<label><b>Telefon Numarası:</b></label><input asp-for="PhoneNumber" class="form-control" />
+				</div>
+				<div class="text-center">
+					<input class="btn btn-dark btn-block " type="submit"value="Siparişi Tamamla">
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+			 @if (ViewBag.isComplete==true)  
+			{  
+					 <script type="text/javascript">  
+						  window.onload = function () {  
+						 alert("Siparişiniz Alınmıştır :)");  
+							};  
+					 </script>  
+		  }  
+

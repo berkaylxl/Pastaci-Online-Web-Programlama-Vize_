@@ -1,0 +1,28 @@
+﻿@model ProductListViewModel
+
+	<div class="container">
+		<div class="row">
+			<div style="text-align:center"class="col-11"><h2 style="margin:50px 0px;font-family:Lucida Sans;font-size:50px"><b>~</b> @Model.CurrentCategory <b>~</b></h2></div>
+		</div>
+
+	<div class="row">
+		@foreach (var item in Model.Products)
+		{
+			
+				<div class="k-hover">
+					<div class="card" style="width: 20rem;margin:10px 15px"><a href="/Home/ProductDetails/@item.ProductID"style="text-decoration: none; color: black;">
+						<img class="card-img-top" src="~/image/@Url.Content(@item.ImagePath)" alt="Card image cap">
+						<div class="card-body">
+							<p class="card-text" style="text-align:center;font-size:20px"> @item.ProductName</p>
+							<p class="card-text" style="text-align:center;font-size:18px"><b>@item.Price.ToString("c")</b></p>
+						</div></a>
+					</div>
+					<a href="/Home/ProductDetails/@Url.Content(@item.ProductID.ToString())" style="width: 20rem;height:3rem;margin:15px 15px" type="button" class="btn btn-outline-dark"><i class="fa fa-shopping-cart"></i>&nbsp;Sepete Ekle</a>
+				</div>
+				
+			
+		}
+	</div>
+
+</div>
+

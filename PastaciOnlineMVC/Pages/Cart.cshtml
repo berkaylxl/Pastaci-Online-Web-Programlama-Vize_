@@ -1,0 +1,57 @@
+﻿@page
+@model PastaciOnlineMVC.Pages.CartModel
+<div class="container">
+	
+	<table class="table  table-striped">
+		<thead>
+			<tr>
+				<th></th>
+				<th class="text-center">Miktar</th>
+				<th class="text-center">Ürün</th>
+				<th class="text-right">Fiyat</th>
+				<th class="text-right">Toplam Fiyat</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var line in Model.Cart.Lines)
+			{
+				<tr>
+					<td class="text-center"><img width=" 150" src="~/image/@Url.Content(@line.Product.ImagePath)"></td>
+					<td class="text-center pt-5">@line.Quantity</td>
+					<td class="text-center pt-5">@line.Product.ProductName</td>
+					<td class="text-right pt-5">@line.Product.Price.ToString("c")</td>
+					<td class="text-right pt-5">
+						@((line.Quantity * line.Product.Price).ToString("c"))
+					</td>
+					<td class="pt-5">
+						<form asp-page-handler="Remove" method="post">
+							<input type="hidden" name="ProductID"
+							   value="@line.Product.ProductID" />
+							<button type="submit" class="btn btn-sm btn-danger "><i class="far fa-trash-alt"></i> &nbsp;
+								Sil
+							</button>
+						</form>
+					</td>
+				</tr>
+			}
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3" class="text-right"><h4>Total:</h4></td>
+				<td class="text-right">
+					<h4>@Model.Cart.ComputeTotalValue().ToString("c")</h4>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+
+	<div class="text-center">
+    <a class="btn btn-dark btn-lg" style="float:right;color:white"  asp-action="Checkout" asp-controller="Order" >
+        
+<i class="far fa-credit-card"></i>&nbsp; Alışverişi Tamamla
+    </a>
+</div>
+</div>
+
+
+
